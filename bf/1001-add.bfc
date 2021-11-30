@@ -1,0 +1,11 @@
+, get input
+> move to the next
+, get the second input
+< go back to the first
+[ start a loop
+- decrement the first
+> go to the next
+- increment the enxt
+< go back
+]
+.
