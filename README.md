@@ -1,41 +1,31 @@
-# Monty
+![picture](https://pbs.twimg.com/media/CFYYWy6UEAE9Ow-.png)
+# The Monty language
+Monty 0.98 is a scripting language that is first compiled into Monty byte codes (Just like Python). It relies on a unique stack, with specific instructions to manipulate it. The goal of this project is to create an interpreter for Monty ByteCodes files.
 
-## Discription
+## Monty byte code files
 
-Monty is  ....
+Files containing Monty byte codes usually have the .m extension. Most of the industry uses this standard but it is not required by the specification of the language. There is not more than one instruction per line. There can be any number of spaces before or after the opcode and its argument:
 
-In this repostory, we try to implement ....
+## Compilation
 
-## The algorithm
+The program will be compiled using:
 
-FLow chart and the discription ....
+```Bash
+gcc -Wall -Werror -Wextra -pedantic *.c -o monty
+```
+## The monty program
+- Usage: monty file
+    - where file is the path to the file containing Monty byte code
+- If the user does not give any file or more than one argument to your program, print the error message USAGE: monty file, followed by a new line, and exit with the status EXIT_FAILURE
+- If, for any reason, it’s not possible to open the file, print the error message Error: Can't open file <file>, followed by a new line, and exit with the status EXIT_FAILURE
+    - where <file> is the name of the file
+- If the file contains an invalid instruction, print the error message L<line_number>: unknown instruction <opcode>, followed by a new line, and exit with the status EXIT_FAILURE
+    - where is the line number where the instruction appears.
+    - Line numbers always start at 1
+- The monty program runs the bytecodes line by line and stop if either:
+    - it executed properly every line of the file
+    - it finds an error in the file
+    - an error occured
+- If we can’t malloc anymore, then we print the error message Error: malloc failed, followed by a new line, and exit with status EXIT_FAILURE.
 
-## Files 
-
-* 1. [monty.h](./monty.h) - This file is the main header file containing all the function prototypes and structs is defined
-* 2. [monty.c](./monty.c) - In this module, the main entery point of the program is defined
-* 3. [lexer.c](./lexer.c) - In this module funtions and other identifiers related to the lexer are defiend
-* 4. [loader.c](./loader.c) - In this module, functions and other identifers related to opening and a file
-* 5. [interpreter.c](./interpreter.c) - In this module, functions and other identifers related to interpreting a linked list of tokens are defined
-* 6. [interpreter_helper1.c](./interpreter_helper1.c) - In this module, functions like 
-	* push 
-	* pall
-	* pint 
-	* pop
-	* swap, which are helpers of the functions defined in the [interpreter.c](./interpreter.c), are defiend.
-* 7. [interpreter_helper2.c](./interpreter_helper2.c) - In this module, functions like 
-	* add
-	* nop
-	* sub 
-	* div 
-	* mult, which are helpers of the functions defined in the [interpreter.c](./interpreter.c), are defiend.
-* 8. [interpreter_helper3.c](./interpreter_helper3.c) - In this module, functions like 
-	* mod
-	* comment
-	* pchar
-	* pstr
-	* rotl, which are helpers of the functions defined in the [interpreter.c](./interpreter.c), are defiend.
-* 9. [interpreter_helper4.c](./interpreter_helper4.c) - In this module, functions like 
-	* rotr, which are helpers of the functions defined in the [interpreter.c](./interpreter.c), are defiend.
-
-# Authors
+## Example of the push and pall opcodes
